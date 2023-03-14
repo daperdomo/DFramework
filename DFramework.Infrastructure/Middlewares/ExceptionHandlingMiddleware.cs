@@ -47,7 +47,7 @@ namespace DFramework.Infrastructure.Middlewares
                     break;
                 case ValidationException ex:
                     response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    errorresponse.Message = ex.Message;
+                    errorresponse.Message = ex.Errors.Select(m => m.ErrorMessage);
                     break;
                 default:
                     response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -56,7 +56,7 @@ namespace DFramework.Infrastructure.Middlewares
             }
 
             _logger.LogError(exception.Message);
-
+            response.ContentType = "application/json";
             await response.WriteAsync(JsonConvert.SerializeObject(errorresponse));
         }
     }

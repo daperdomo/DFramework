@@ -78,3 +78,9 @@ D:\Proyects\DFramework\DFramework\obj\Debug\net6.0\DFramework.csproj.CopyComplet
 D:\Proyects\DFramework\DFramework\obj\Debug\net6.0\DFramework.dll
 D:\Proyects\DFramework\DFramework\obj\Debug\net6.0\refint\DFramework.dll
 D:\Proyects\DFramework\DFramework\obj\Debug\net6.0\DFramework.pdb
+D:\Proyects\DFramework\DFramework\bin\Debug\net6.0\DFramework.deps.json
+D:\Proyects\DFramework\DFramework\bin\Debug\net6.0\DFramework.runtimeconfig.json
+D:\Proyects\DFramework\DFramework\bin\Debug\net6.0\DFramework.dll
+D:\Proyects\DFramework\DFramework\bin\Debug\net6.0\DFramework.pdb
+D:\Proyects\DFramework\DFramework\obj\Debug\net6.0\DFramework.genruntimeconfig.cache
+D:\Proyects\DFramework\DFramework\obj\Debug\net6.0\ref\DFramework.dll
