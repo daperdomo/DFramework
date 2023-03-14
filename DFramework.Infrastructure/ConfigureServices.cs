@@ -1,6 +1,8 @@
 ﻿using DFramework.Application.Authentication;
 using DFramework.Application.Common.Interfaces;
+using DFramework.Application.Common.Interfaces.Caching;
 using DFramework.Application.Common.Interfaces.Services;
+using DFramework.Infrastructure.Caching;
 using DFramework.Infrastructure.Persistence;
 using DFramework.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,7 @@ public static class ConfigureServices
     {
         if (configuration.GetValue<bool>("UseInMemoryDatabase"))
         {
-            services.AddDbContext<IDFrameworkDbContext, DFrameworkContext>(options => options.UseInMemoryDatabase("LibarryDb"));
+            services.AddDbContext<IDFrameworkDbContext, DFrameworkContext>(options => options.UseInMemoryDatabase("DFrameworkDb"));
         }
         else
         {
@@ -26,7 +28,8 @@ public static class ConfigureServices
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
         services.AddScoped<DFrameworkDbContextInitializer>();
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();
-
+        services.AddMemoryCache();
+        services.AddScoped<ICacheManager, MemoryCacheManager>();
         return services;
     }
 }
