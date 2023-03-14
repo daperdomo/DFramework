@@ -1,0 +1,17 @@
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Application.deps.json
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Application.dll
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Application.pdb
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Contracts.dll
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Domain.dll
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Contracts.pdb
+D:\Proyects\DFramework\DFramework.Application\bin\Debug\net6.0\DFramework.Domain.pdb
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.csproj.AssemblyReference.cache
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.AssemblyInfoInputs.cache
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.AssemblyInfo.cs
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.csproj.CoreCompileInputs.cache
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.csproj.CopyComplete
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.dll
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\refint\DFramework.Application.dll
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\DFramework.Application.pdb
+D:\Proyects\DFramework\DFramework.Application\obj\Debug\net6.0\ref\DFramework.Application.dll
