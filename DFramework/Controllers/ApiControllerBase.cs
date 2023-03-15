@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DFramework.Controllers;
 
 [ApiController]
-[Route("api/")]
+[Route("api/[controller]")]
 public abstract class ApiControllerBase : ControllerBase
 {
     private ISender _mediator = null!;
