@@ -1,7 +1,11 @@
 using DFramework.Application;
+using DFramework.Application.Authentication;
 using DFramework.Infrastructure;
 using DFramework.Infrastructure.Middlewares;
 using DFramework.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +18,27 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddApplicationServices();
 services.AddInfrastructureServices(builder.Configuration);
+
+services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(o =>
+{
+    var settings = builder.Configuration.GetSection(JwtSettings.SectionName).Get<JwtSettings>()!;
+    o.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = settings.Issuer,
+        ValidAudience = settings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey
+        (Encoding.UTF8.GetBytes(settings.Secret)),
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = false,
+        ValidateIssuerSigningKey = true
+    };
+});
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
@@ -39,6 +64,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("corsapp");
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();

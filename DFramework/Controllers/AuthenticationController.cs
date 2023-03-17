@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DFramework.Controllers
 {
+    [Route("api/")]
     public class AuthenticationController : ApiControllerBase
     {
 

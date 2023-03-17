@@ -8,7 +8,7 @@ namespace DFramework.Controllers
     public class LocalizationController : ApiControllerBase
     {
 
-        [HttpGet("localization/all")]
+        [HttpGet("all")]
         public async Task<IEnumerable<LocalizedKeyDto>> GetAll()
         {
             return await Mediator.Send(new GetLocalizationQuery());
