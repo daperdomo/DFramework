@@ -8,7 +8,8 @@ namespace DFramework.Application.Common.Mappings.Localization
     {
         public LocalizationProfile()
         {
-            CreateMap<LanguageResource, LocalizedString>();
+            CreateMap<LanguageResource, LocalizedString>()
+                .ForMember(d => d.Name, exp => exp.MapFrom(s => s.Name.ToLower()));
         }
     }
 }

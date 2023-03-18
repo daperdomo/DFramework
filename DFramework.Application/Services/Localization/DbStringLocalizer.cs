@@ -49,7 +49,9 @@ namespace DFramework.Application.Services.Localization
 
                 if (languageResource != null)
                 {
-                    return languageResource.LanguageResources.Select(m => _mapper.Map<LocalizedString>(m));
+                    return languageResource.LanguageResources
+                    .DistinctBy(m => m.Name)
+                    .Select(m => _mapper.Map<LocalizedString>(m));
                 }
                 return null!;
             });

@@ -5,6 +5,7 @@ using DFramework.Infrastructure.Middlewares;
 using DFramework.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Globalization;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +55,11 @@ using (var scope = app.Services.CreateScope())
     await initialiser.InitialiseAsync();
     await initialiser.SeedAsync();
 }
+
+var cultureInfo = new CultureInfo("es-DO");
+
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Persistence\Configurations\" />
-    <Folder Include="Persitence\Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
