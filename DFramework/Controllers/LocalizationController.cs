@@ -9,7 +9,7 @@ namespace DFramework.Controllers
     {
 
         [HttpGet("all")]
-        public async Task<IEnumerable<LocalizedKeyDto>> GetAll()
+        public async Task<Dictionary<string, string>> GetAll()
         {
             return await Mediator.Send(new GetLocalizationQuery());
         }

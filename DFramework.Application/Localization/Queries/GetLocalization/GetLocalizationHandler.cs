@@ -6,7 +6,7 @@ using Microsoft.Extensions.Localization;
 
 namespace DFramework.Application.Localization.Queries.GetLocalization
 {
-    public class GetLocalizationHandler : IRequestHandler<GetLocalizationQuery, IEnumerable<LocalizedKeyDto>>
+    public class GetLocalizationHandler : IRequestHandler<GetLocalizationQuery, Dictionary<string, string>>
     {
         private readonly IStringLocalizer _localizer;
         private readonly IMapper _mapper;
@@ -17,11 +17,11 @@ namespace DFramework.Application.Localization.Queries.GetLocalization
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<LocalizedKeyDto>> Handle(GetLocalizationQuery request, CancellationToken cancellationToken)
+        public async Task<Dictionary<string, string>> Handle(GetLocalizationQuery request, CancellationToken cancellationToken)
         {
             var resources = await Task.Run(() => _localizer.GetAllStrings());
-
-            return _mapper.Map<IEnumerable<LocalizedKeyDto>>(resources);
+            var dic = resources.Select(m => new KeyValuePair<string, string>(m.Name, m.Value));
+            return new Dictionary<string, string>(dic);
         }
     }
 }

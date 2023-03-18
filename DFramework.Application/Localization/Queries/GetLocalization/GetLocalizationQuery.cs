@@ -3,7 +3,7 @@ using MediatR;
 
 namespace DFramework.Application.Localization.Queries.GetLocalization
 {
-    public class GetLocalizationQuery : IRequest<IEnumerable<LocalizedKeyDto>>
+    public class GetLocalizationQuery : IRequest<Dictionary<string, string>>
     {
     }
 }
