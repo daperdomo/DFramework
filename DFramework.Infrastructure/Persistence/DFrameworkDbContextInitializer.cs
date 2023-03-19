@@ -1,4 +1,5 @@
 ﻿using DFramework.Application.Common.Interfaces;
+using DFramework.Application.Common.Interfaces.Authentication;
 using DFramework.Application.Common.Interfaces.Services;
 using DFramework.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -16,15 +17,18 @@ namespace DFramework.Infrastructure.Persistence
         private readonly ILogger<DFrameworkDbContextInitializer> _logger;
         private readonly IDFrameworkDbContext _context;
         private readonly IDateTimeProvider _dateTimeProvider;
+        private readonly IPasswordHasher _passwordHasher;
 
         public DFrameworkDbContextInitializer(
             ILogger<DFrameworkDbContextInitializer> logger,
             IDFrameworkDbContext context,
-            IDateTimeProvider dateTimeProvider)
+            IDateTimeProvider dateTimeProvider,
+            IPasswordHasher passwordHasher)
         {
             _logger = logger;
             _context = context;
             _dateTimeProvider = dateTimeProvider;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task InitialiseAsync()
@@ -58,6 +62,32 @@ namespace DFramework.Infrastructure.Persistence
         public async Task TrySeedAsync()
         {
             await TrySeedLocalizationAsync();
+            await TrySeedUsersAsync();
+        }
+
+        private async Task TrySeedUsersAsync()
+        {
+            try
+            {
+                if (!_context.Users.Any())
+                {
+                    _context.Users.Add(new User
+                    {
+                        RolId = 1,
+                        Username = "master",
+                        Password = _passwordHasher.Hash("master"),
+                        Active = true,
+                        CreatedDate = _dateTimeProvider.Now,
+                        FullName = "Administrator",
+                        Email = "administrator@mail.com",
+                    });
+                }
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while seeding users.");
+            }
         }
 
         private async Task TrySeedLocalizationAsync()
