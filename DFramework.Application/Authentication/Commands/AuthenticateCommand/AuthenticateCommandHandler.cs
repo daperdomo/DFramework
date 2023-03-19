@@ -3,6 +3,7 @@ using DFramework.Application.Common.Interfaces.Authentication;
 using DFramework.Contracts.Authentication;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 
 namespace DFramework.Application.Authentication.Commands.AuthenticateCommand
 {
@@ -11,21 +12,24 @@ namespace DFramework.Application.Authentication.Commands.AuthenticateCommand
         private readonly ITokenGenerator _tokenGenerator;
         private readonly IDFrameworkDbContext _dbContext;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IStringLocalizer _localizer;
 
         public AuthenticateCommandHandler(ITokenGenerator tokenGenerator,
             IDFrameworkDbContext dbContext,
-            IPasswordHasher passwordHasher)
+            IPasswordHasher passwordHasher,
+            IStringLocalizer localizer)
         {
             _tokenGenerator = tokenGenerator;
             _dbContext = dbContext;
             _passwordHasher = passwordHasher;
+            _localizer = localizer;
         }
 
         public async Task<AuthenticateResponse> Handle(AuthenticateCommand request, CancellationToken cancellationToken)
         {
             var user = await _dbContext.Users.FirstOrDefaultAsync(m => m.Username == request.Username);
             if (user == null)
-                throw new ArgumentException("User not found");
+                throw new ArgumentException(_localizer["authentication.user.notfound"]);
 
             var hashedPassword = _passwordHasher.Hash(request.Password);
 
@@ -35,6 +39,7 @@ namespace DFramework.Application.Authentication.Commands.AuthenticateCommand
                 {
                     Id = user.Id,
                     Email = user.Email,
+                    Username = user.Username,
                     FullName = user.FullName
                 };
 
@@ -45,7 +50,7 @@ namespace DFramework.Application.Authentication.Commands.AuthenticateCommand
                 return response;
             }
 
-            throw new ArgumentException("User or password invalid");
+            throw new ArgumentException(_localizer["authentication.notvalid"]);
         }
     }
 }

@@ -7,8 +7,8 @@ namespace DFramework.Application.Authentication.Commands.AuthenticateCommand
     {
         public AuthenticateCommandValidator(IStringLocalizer localizer)
         {
-            RuleFor(c => c.Username).NotEmpty().WithMessage(localizer["invaliduser"]);
-            RuleFor(c => c.Password).NotEmpty().WithMessage("Password is required");
+            RuleFor(c => c.Username).NotEmpty().WithMessage(localizer["user.invalid"]);
+            RuleFor(c => c.Password).NotEmpty().WithMessage(localizer["password.invalid"]);
         }
     }
 }

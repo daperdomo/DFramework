@@ -3,6 +3,7 @@ using DFramework.Application.Common.Interfaces;
 using DFramework.Application.Common.Interfaces.Authentication;
 using DFramework.Contracts.Security;
 using DFramework.Domain.Entities;
+using Microsoft.Extensions.Localization;
 
 namespace DFramework.Application.Security.Users.Commands.CreateUser
 {
@@ -11,15 +12,20 @@ namespace DFramework.Application.Security.Users.Commands.CreateUser
         private readonly IDFrameworkDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IPasswordHasher _hasher;
-        public CreateUserHandler(IDFrameworkDbContext dbContext, IMapper mapper, IPasswordHasher hasher)
+        private readonly IStringLocalizer _localizer;
+        public CreateUserHandler(IDFrameworkDbContext dbContext, IMapper mapper, IPasswordHasher hasher, IStringLocalizer localizer)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _hasher = hasher;
+            _localizer = localizer;
         }
 
         public async Task<CreateUserResponse> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
+            if (_dbContext.Users.Any(m => m.Username == request.Username))
+                throw new ArgumentException(_localizer["existinguser.message"]);
+
             var user = _mapper.Map<User>(request);
             user.Active = true;
             user.Password = _hasher.Hash("123456");
