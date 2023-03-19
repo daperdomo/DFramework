@@ -95,6 +95,8 @@ namespace DFramework.Infrastructure.Persistence
                     new LanguageResource {Name = "users.table.header.username", Value = "Usuario" ,CreatedDate = _dateTimeProvider.Now},
                     new LanguageResource {Name = "users.table.header.fullname", Value = "Nombre" ,CreatedDate = _dateTimeProvider.Now},
                     new LanguageResource {Name = "users.table.header.email", Value = "Correo electrónico" ,CreatedDate = _dateTimeProvider.Now},
+                    new LanguageResource {Name = "users.table.edit.action", Value = "Editar" ,CreatedDate = _dateTimeProvider.Now},
+                    new LanguageResource {Name = "users.table.delete.action", Value = "Borrar" ,CreatedDate = _dateTimeProvider.Now},
                     new LanguageResource {Name = "adduser.title", Value = "Agregar usuario" ,CreatedDate = _dateTimeProvider.Now},
                     new LanguageResource {Name = "adduser.input.username", Value = "Usuario" ,CreatedDate = _dateTimeProvider.Now},
                     new LanguageResource {Name = "adduser.input.fullname", Value = "Nombre" ,CreatedDate = _dateTimeProvider.Now},
