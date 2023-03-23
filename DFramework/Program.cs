@@ -19,6 +19,7 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddApplicationServices();
 services.AddInfrastructureServices(builder.Configuration);
+services.AddHttpContextAccessor();
 
 services.AddAuthentication(options =>
 {

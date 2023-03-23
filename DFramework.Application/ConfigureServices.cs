@@ -24,6 +24,7 @@ namespace DFramework.Application
             services.AddScoped<ITokenGenerator, TokenGenerator>();
             services.AddScoped<IPasswordHasher, Md5PasswordHasher>();
             services.AddScoped<IStringLocalizer, DbStringLocalizer>();
+            services.AddScoped<IUserProfile, UserProfile>();
 
             return services;
         }
