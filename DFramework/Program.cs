@@ -1,5 +1,6 @@
 using DFramework.Application;
 using DFramework.Application.Authentication;
+using DFramework.Contracts.Authentication;
 using DFramework.Infrastructure;
 using DFramework.Infrastructure.Middlewares;
 using DFramework.Infrastructure.Persistence;

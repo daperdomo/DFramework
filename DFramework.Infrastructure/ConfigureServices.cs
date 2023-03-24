@@ -1,7 +1,8 @@
-﻿using DFramework.Application.Authentication;
-using DFramework.Application.Common.Interfaces;
+﻿using DFramework.Application.Common.Interfaces;
 using DFramework.Application.Common.Interfaces.Caching;
 using DFramework.Application.Common.Interfaces.Services;
+using DFramework.Contracts.Authentication;
+using DFramework.Contracts.Settings;
 using DFramework.Infrastructure.Caching;
 using DFramework.Infrastructure.Persistence;
 using DFramework.Infrastructure.Services;
@@ -26,6 +27,7 @@ public static class ConfigureServices
         }
 
         services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
+        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
         services.AddScoped<DFrameworkDbContextInitializer>();
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();
         services.AddMemoryCache();

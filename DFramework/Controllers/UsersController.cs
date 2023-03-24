@@ -1,4 +1,5 @@
-﻿using DFramework.Application.Common.Models;
+﻿using DFramework.Application.Authentication.Commands.ResetPassword;
+using DFramework.Application.Common.Models;
 using DFramework.Application.Security.Users.Commands.CreateUser;
 using DFramework.Application.Security.Users.Commands.DeleteUser;
 using DFramework.Application.Security.Users.Commands.UpdateUser;
@@ -13,6 +14,7 @@ namespace DFramework.Controllers
     [Authorize]
     public class UsersController : ApiControllerBase
     {
+
         [HttpGet("all")]
         public async Task<PaginatedList<UserDto>> GetAll([FromQuery] GetAllQuery request)
         {
@@ -38,6 +40,12 @@ namespace DFramework.Controllers
             {
                 Id = Id
             });
+        }
+
+        [HttpPost("resetpassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordCommand request)
+        {
+            return Ok(await Mediator.Send(request));
         }
     }
 }
