@@ -1,6 +1,6 @@
-﻿using DFramework.Application.Authentication;
-using DFramework.Application.Common.Interfaces.Authentication;
+﻿using DFramework.Application.Common.Interfaces.Authentication;
 using DFramework.Contracts.Authentication;
+using DFramework.Contracts.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

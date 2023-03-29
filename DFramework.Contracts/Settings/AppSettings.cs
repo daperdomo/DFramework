@@ -5,7 +5,7 @@ namespace DFramework.Contracts.Settings
 	{
 		public static string SectionName = "AppSettings";
 
-		public string DefaultPassword { get; set; }
+		public string DefaultPassword { get; set; } = null!;
 	}
 }
 

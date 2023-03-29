@@ -1,4 +1,4 @@
-﻿namespace DFramework.Contracts.Authentication
+﻿namespace DFramework.Contracts.Settings
 {
     public class JwtSettings
     {
